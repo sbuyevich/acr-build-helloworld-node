@@ -24,8 +24,7 @@ jobs:
         username: ${{ secrets.POC_REGISTRY_USERNAME }}
         password: ${{ secrets.POC_REGISTRY_PASSWORD }}
     - run: |
-        docker build . -t ${{ secrets.POC_REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
-        docker push ${{ secrets.POC_REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
+        az acr build . -t ${{ secrets.POC_REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
 
     - name: 'Deploy to Azure Container Instances'
       uses: 'azure/aci-deploy@v1'
